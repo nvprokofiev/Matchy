@@ -11,6 +11,7 @@ import UIKit
 class GameViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var scoreView: ScoreView!
     var cards: [Card] = []
     private let presenter = GamePresenter()
 
@@ -18,6 +19,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         collectionView.register(CardCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: CardCollectionViewCell.self))
         setupPresenter()
+        collectionView.setCollectionViewLayout(SquareCardFlowLayout(for: collectionView).layout, animated: true)
     }
     
     private func setupPresenter() {

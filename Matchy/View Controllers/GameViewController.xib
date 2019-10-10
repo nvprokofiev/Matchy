@@ -21,9 +21,21 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tww-Yz-PTO">
                     <rect key="frame" x="0.0" y="44" width="414" height="120"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C4i-z7-gxb" customClass="ScoreView" customModule="Matchy" customModuleProvider="target">
+                            <rect key="frame" x="16" y="16" width="104" height="104"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="C4i-z7-gxb" secondAttribute="height" id="J73-mQ-mcd"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
+                        <constraint firstItem="C4i-z7-gxb" firstAttribute="top" secondItem="Tww-Yz-PTO" secondAttribute="top" constant="16" id="40M-hU-Ox0"/>
+                        <constraint firstItem="C4i-z7-gxb" firstAttribute="leading" secondItem="Tww-Yz-PTO" secondAttribute="leading" constant="16" id="Dng-iG-4v3"/>
                         <constraint firstAttribute="height" constant="120" id="ILz-YN-35C"/>
+                        <constraint firstAttribute="bottom" secondItem="C4i-z7-gxb" secondAttribute="bottom" id="ScW-ct-Xx4"/>
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="khd-fz-DbO">

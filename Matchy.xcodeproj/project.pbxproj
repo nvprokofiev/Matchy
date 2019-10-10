@@ -21,6 +21,8 @@
 		4B30E383234A66A50049165C /* GameCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B30E382234A66A50049165C /* GameCollectionViewDataSource.swift */; };
 		4B30E386234A67570049165C /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B30E385234A67570049165C /* GamePresenter.swift */; };
 		4B30E389234A684B0049165C /* GameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B30E388234A684B0049165C /* GameInteractor.swift */; };
+		4B52F1A5234F8EB500122139 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1A4234F8EB500122139 /* ScoreView.swift */; };
+		4B52F1A9234F9A0200122139 /* SquareCardFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1A8234F9A0200122139 /* SquareCardFlowLayout.swift */; };
 		4BE405A6234A3FD60058FD97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE405A5234A3FD60058FD97 /* AppDelegate.swift */; };
 		4BE405A8234A3FD60058FD97 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE405A7234A3FD60058FD97 /* SceneDelegate.swift */; };
 		4BE405AF234A3FD80058FD97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BE405AE234A3FD80058FD97 /* Assets.xcassets */; };
@@ -42,6 +44,8 @@
 		4B30E382234A66A50049165C /* GameCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		4B30E385234A67570049165C /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
 		4B30E388234A684B0049165C /* GameInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInteractor.swift; sourceTree = "<group>"; };
+		4B52F1A4234F8EB500122139 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
+		4B52F1A8234F9A0200122139 /* SquareCardFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareCardFlowLayout.swift; sourceTree = "<group>"; };
 		4BE405A2234A3FD60058FD97 /* Matchy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BE405A5234A3FD60058FD97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BE405A7234A3FD60058FD97 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 		4B2EB85B234A4B4000AB8A4B /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				4B52F1A3234F8E9D00122139 /* Score */,
 				4B2EB85C234A4B4C00AB8A4B /* Card */,
 			);
 			path = "Custom Views";
@@ -121,6 +126,7 @@
 				4B2EB85F234A4DEA00AB8A4B /* GameConfiguration.swift */,
 				4B2EB861234A4E2200AB8A4B /* Gradients.swift */,
 				4B2EB86B234A507400AB8A4B /* CardIdentifierFactory.swift */,
+				4B52F1A8234F9A0200122139 /* SquareCardFlowLayout.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -172,6 +178,14 @@
 				4B30E388234A684B0049165C /* GameInteractor.swift */,
 			);
 			path = Interactor;
+			sourceTree = "<group>";
+		};
+		4B52F1A3234F8E9D00122139 /* Score */ = {
+			isa = PBXGroup;
+			children = (
+				4B52F1A4234F8EB500122139 /* ScoreView.swift */,
+			);
+			path = Score;
 			sourceTree = "<group>";
 		};
 		4BE40599234A3FD60058FD97 = {
@@ -279,10 +293,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B2EB815234A40F800AB8A4B /* GameRouter.swift in Sources */,
+				4B52F1A5234F8EB500122139 /* ScoreView.swift in Sources */,
 				4B2EB86C234A507400AB8A4B /* CardIdentifierFactory.swift in Sources */,
 				4B2EB867234A4F3400AB8A4B /* StyleHelper.swift in Sources */,
 				4B2EB865234A4E8C00AB8A4B /* Nibloadable.swift in Sources */,
 				4B30E386234A67570049165C /* GamePresenter.swift in Sources */,
+				4B52F1A9234F9A0200122139 /* SquareCardFlowLayout.swift in Sources */,
 				4B2EB875234A573600AB8A4B /* CardCollectionViewCell.swift in Sources */,
 				4B30E389234A684B0049165C /* GameInteractor.swift in Sources */,
 				4BE405A6234A3FD60058FD97 /* AppDelegate.swift in Sources */,
