@@ -10,8 +10,8 @@ import UIKit
 
 class ScoreView: UIView, StyleHelper {
     
-    private var cardView: CardView = {
-        let view = CardView()
+    private var tileView: TileView = {
+        let view = TileView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -39,35 +39,28 @@ class ScoreView: UIView, StyleHelper {
     }
     
     private func initialSetup() {
-        addCardView()
+        addTileView()
         addScoreLabel()
-        styleCard()
     }
     
-    private func addCardView() {
-        addSubview(cardView)
+    private func addTileView() {
+        addSubview(tileView)
         NSLayoutConstraint.activate([
-            cardView.topAnchor.constraint(equalTo: topAnchor),
-            cardView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            cardView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            cardView.trailingAnchor.constraint(equalTo: trailingAnchor)
+            tileView.topAnchor.constraint(equalTo: topAnchor),
+            tileView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            tileView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tileView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
-        cardView.frame = self.frame
     }
 
     private func addScoreLabel() {
-        cardView.addSubview(scoreLabel)
+        tileView.addSubview(scoreLabel)
         NSLayoutConstraint.activate([
-            scoreLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 8),
-            scoreLabel.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -8),
-            scoreLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 8),
-                scoreLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -8)
+            scoreLabel.topAnchor.constraint(equalTo: tileView.topAnchor, constant: 8),
+            scoreLabel.bottomAnchor.constraint(equalTo: tileView.bottomAnchor, constant: -8),
+            scoreLabel.leadingAnchor.constraint(equalTo: tileView.leadingAnchor, constant: 8),
+            scoreLabel.trailingAnchor.constraint(equalTo: tileView.trailingAnchor, constant: -8)
         ])
-    }
-    
-    private func styleCard() {
-        setGradientBackgroundColor(to: self, colors: Gradients().randomColorSet())
-        setCornerRadius(to: self)
-        setShadow(to: self)
+        
     }
 }

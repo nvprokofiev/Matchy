@@ -11,6 +11,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameViewController" customModule="Matchy" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="khd-fz-DbO" id="nDM-u2-zk5"/>
+                <outlet property="flipsLeftView" destination="zhj-g7-C22" id="T95-WS-GO6"/>
+                <outlet property="flipsUsedView" destination="j9h-dL-qWl" id="FTi-3r-p05"/>
+                <outlet property="scoreView" destination="C4i-z7-gxb" id="keb-ae-mYE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,26 +23,67 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tww-Yz-PTO">
-                    <rect key="frame" x="0.0" y="44" width="414" height="120"/>
+                    <rect key="frame" x="0.0" y="60" width="414" height="160"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C4i-z7-gxb" customClass="ScoreView" customModule="Matchy" customModuleProvider="target">
-                            <rect key="frame" x="16" y="16" width="104" height="104"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="cSb-7k-thf">
+                            <rect key="frame" x="16" y="8" width="382" height="144"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C4i-z7-gxb" customClass="ScoreView" customModule="Matchy" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="144" height="144"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="C4i-z7-gxb" secondAttribute="height" id="1XX-kn-tHL"/>
+                                    </constraints>
+                                </view>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="1TI-cr-4qk">
+                                    <rect key="frame" x="160" y="0.0" width="222" height="144"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rD1-k9-wOV">
+                                            <rect key="frame" x="0.0" y="0.0" width="222" height="72"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhj-g7-C22" customClass="TitledTileView" customModule="Matchy" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="103" height="72"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j9h-dL-qWl" customClass="TitledTileView" customModule="Matchy" customModuleProvider="target">
+                                                    <rect key="frame" x="119" y="0.0" width="103" height="72"/>
+                                                </view>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qG4-e6-FMd">
+                                            <rect key="frame" x="0.0" y="88" width="222" height="56"/>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="rD1-k9-wOV" firstAttribute="leading" secondItem="1TI-cr-4qk" secondAttribute="leading" id="0az-OW-eGX"/>
+                                        <constraint firstItem="rD1-k9-wOV" firstAttribute="height" secondItem="1TI-cr-4qk" secondAttribute="height" multiplier="0.5" id="cXY-aM-ptk"/>
+                                        <constraint firstAttribute="bottom" secondItem="qG4-e6-FMd" secondAttribute="bottom" id="gCz-PH-xui"/>
+                                        <constraint firstItem="rD1-k9-wOV" firstAttribute="top" secondItem="1TI-cr-4qk" secondAttribute="top" id="iFT-Uy-fju"/>
+                                        <constraint firstAttribute="trailing" secondItem="qG4-e6-FMd" secondAttribute="trailing" id="lTb-J5-GlM"/>
+                                        <constraint firstAttribute="trailing" secondItem="rD1-k9-wOV" secondAttribute="trailing" id="o3m-Ee-Dwd"/>
+                                        <constraint firstItem="qG4-e6-FMd" firstAttribute="leading" secondItem="1TI-cr-4qk" secondAttribute="leading" id="wc9-Ep-AbI"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="C4i-z7-gxb" secondAttribute="height" id="J73-mQ-mcd"/>
+                                <constraint firstAttribute="trailing" secondItem="1TI-cr-4qk" secondAttribute="trailing" id="8xP-un-u2L"/>
+                                <constraint firstAttribute="bottom" secondItem="1TI-cr-4qk" secondAttribute="bottom" id="DaW-4T-lk6"/>
+                                <constraint firstItem="C4i-z7-gxb" firstAttribute="top" secondItem="cSb-7k-thf" secondAttribute="top" id="EBB-03-ECS"/>
+                                <constraint firstAttribute="bottom" secondItem="C4i-z7-gxb" secondAttribute="bottom" id="Lr9-Uy-H0g"/>
+                                <constraint firstItem="C4i-z7-gxb" firstAttribute="leading" secondItem="cSb-7k-thf" secondAttribute="leading" id="mfE-ds-4NO"/>
+                                <constraint firstItem="1TI-cr-4qk" firstAttribute="top" secondItem="cSb-7k-thf" secondAttribute="top" id="pcB-32-OHg"/>
                             </constraints>
-                        </view>
+                        </stackView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstItem="C4i-z7-gxb" firstAttribute="top" secondItem="Tww-Yz-PTO" secondAttribute="top" constant="16" id="40M-hU-Ox0"/>
-                        <constraint firstItem="C4i-z7-gxb" firstAttribute="leading" secondItem="Tww-Yz-PTO" secondAttribute="leading" constant="16" id="Dng-iG-4v3"/>
-                        <constraint firstAttribute="height" constant="120" id="ILz-YN-35C"/>
-                        <constraint firstAttribute="bottom" secondItem="C4i-z7-gxb" secondAttribute="bottom" id="ScW-ct-Xx4"/>
+                        <constraint firstItem="cSb-7k-thf" firstAttribute="leading" secondItem="Tww-Yz-PTO" secondAttribute="leading" constant="16" id="DRU-Wt-Psg"/>
+                        <constraint firstAttribute="height" constant="160" id="ILz-YN-35C"/>
+                        <constraint firstAttribute="trailing" secondItem="cSb-7k-thf" secondAttribute="trailing" constant="16" id="TlX-ln-VlM"/>
+                        <constraint firstItem="cSb-7k-thf" firstAttribute="top" secondItem="Tww-Yz-PTO" secondAttribute="top" constant="8" id="egH-3m-oUX"/>
+                        <constraint firstAttribute="bottom" secondItem="cSb-7k-thf" secondAttribute="bottom" constant="8" id="o2D-rV-Usa"/>
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="khd-fz-DbO">
-                    <rect key="frame" x="0.0" y="188" width="414" height="708"/>
+                    <rect key="frame" x="0.0" y="244" width="414" height="652"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ogi-yJ-Ch2">
                         <size key="itemSize" width="50" height="50"/>
@@ -54,7 +98,7 @@
                 <constraint firstItem="khd-fz-DbO" firstAttribute="top" secondItem="Tww-Yz-PTO" secondAttribute="bottom" constant="24" id="7bQ-sv-4GB"/>
                 <constraint firstItem="Tww-Yz-PTO" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="9v0-3c-TKY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="khd-fz-DbO" secondAttribute="trailing" id="E8E-2d-LbW"/>
-                <constraint firstItem="Tww-Yz-PTO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="axj-rf-Hxp"/>
+                <constraint firstItem="Tww-Yz-PTO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="axj-rf-Hxp"/>
                 <constraint firstItem="khd-fz-DbO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jSI-Vs-iHA"/>
                 <constraint firstAttribute="bottom" secondItem="khd-fz-DbO" secondAttribute="bottom" id="q8u-IR-bzu"/>
                 <constraint firstItem="Tww-Yz-PTO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qCv-kj-izq"/>
