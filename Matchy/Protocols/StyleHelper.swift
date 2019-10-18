@@ -12,7 +12,7 @@ protocol StyleHelper {}
 
 extension StyleHelper where Self: UIView {
   
-  func setGradientBackgroundColor(to view: UIView, colors: TwoColorsGradient = Gradients().randomColorSet()) {
+  func setGradientBackgroundColor(to view: UIView, colors: TwoColorsGradient) {
     layer.sublayers?.filter { $0 is CAGradientLayer }.forEach { $0.removeFromSuperlayer() }
     let gradientLayer = CAGradientLayer()
     gradientLayer.frame = view.bounds
@@ -20,12 +20,12 @@ extension StyleHelper where Self: UIView {
     gradientLayer.locations = [0.0, 1.0]
     gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
     gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-    gradientLayer.cornerRadius = 6.0
+    gradientLayer.cornerRadius = 20.0
     layer.insertSublayer(gradientLayer, at: 0)
   }
   
   func setCornerRadius(to view: UIView){
-    view.layer.cornerRadius = 6.0
+    view.layer.cornerRadius = 20.0
     view.layer.masksToBounds = true
     view.layer.borderWidth = 0.5
     view.layer.borderColor = UIColor.clear.cgColor
@@ -40,7 +40,12 @@ extension StyleHelper where Self: UIView {
     view.layer.cornerRadius = 6.0
     view.clipsToBounds = false
   }
-  
+    
+    func applyStyle(to view: UIView, colors: TwoColorsGradient = Gradients().randomColorSet()) {
+        setGradientBackgroundColor(to: view, colors: colors)
+        setCornerRadius(to: view)
+        setShadow(to: view)
+    }
 }
 
 

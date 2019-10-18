@@ -12,8 +12,65 @@ class GameInteractor {
     
     private var cards: [Card] = []
     
-    func getCards()-> [Card]{
-        (1 ... 36).forEach { _ in cards.append(Card()) }
+    private(set) var score: Int = 0
+    private var flipsUsed: Int = 0
+    private var gameLevel = GameLevel()
+    private var presenter: GamePresenter
+
+    
+    init(presenter: GamePresenter) {
+        self.presenter = presenter
+    }
+    
+    private var flippedCard: Card?
+    
+    //MARK: - Callbacks
+    var cardsMatched: (() -> Void)?
+    var flipCardsBack: (() -> Void)?
+    var gameEnded: (() -> Void)?
+    var playAgain: (() -> Void)?
+    
+    func start() {
+        cards = getCardSet()
+    }
+    
+    private func getCardSet()-> [Card] {
+        CardIdentifierFactory.reset()
+        gameLevel.levelUp()
+        gameLevel.levelUp()
+        gameLevel.levelUp()
+        gameLevel.levelUp()
+
+        
+        cards = (1 ... gameLevel.pairsNumber).map { _ in Card() }
+        
+        cards.forEach{ cards.append($0) }
+//        cards.shuffle()
+    
         return cards
     }
+    
+    func getCards()-> [Card] {
+        return cards
+    }
+    
+    func flip(_ card: Card){
+                
+        guard let flippedCard = flippedCard else {
+            self.flippedCard = card
+            return
+        }
+        
+        if flippedCard == card {
+            cardsMatched?()
+        } else {
+            flipCardsBack?()
+        }
+        
+        self.flippedCard = nil
+
+    }
+    
+    
+
 }

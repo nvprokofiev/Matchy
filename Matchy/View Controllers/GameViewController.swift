@@ -33,4 +33,31 @@ class GameViewController: UIViewController {
         presenter.viewDidLoad()
         presenter.setDelegateAndDataSource(for: collectionView)
     }
+    
+    func flipCardsBack(){
+        //remove?
+        print(#function)
+    }
+    
+    func cardsMatched() {
+        print(#function)
+    }
+    
+    func gameEnded() {
+        
+    }
+    
+    func playAgain() {
+        
+    }
+    
+    func reloadCells(_ cells: [CardCollectionViewCell]) {
+        let indexPaths: [IndexPath] = cells.compactMap { (collectionView.indexPath(for: $0))}
+        
+        collectionView.reloadItems(at: indexPaths)
+    }
+        
+    func reloadData() {
+        collectionView.reloadData()
+    }
 }

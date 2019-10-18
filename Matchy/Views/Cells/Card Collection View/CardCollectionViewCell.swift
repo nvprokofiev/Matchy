@@ -16,6 +16,8 @@ class CardCollectionViewCell: UICollectionViewCell {
         return view
     }()
 
+    weak var cardCellDelegate: CardCellDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addCardView()
@@ -37,7 +39,15 @@ class CardCollectionViewCell: UICollectionViewCell {
         cardView.frame = self.frame
     }
 
-    func configure(by card: Card) {
+    func configure(by card: Card, with delegate: CardCellDelegate?) {
         cardView.configure(by: card)
+        cardCellDelegate = delegate
+        cardView.delegate = self
+    }
+}
+
+extension CardCollectionViewCell: CardDelegate {
+    func didFlip(_ card: Card) {
+        cardCellDelegate?.didFlip(card: card, in: self)
     }
 }
