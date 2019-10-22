@@ -25,6 +25,7 @@
 		4B52F1A9234F9A0200122139 /* SquareCardFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1A8234F9A0200122139 /* SquareCardFlowLayout.swift */; };
 		4B52F1AC234FA4CF00122139 /* TitledTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1AB234FA4CF00122139 /* TitledTileView.swift */; };
 		4B52F1AF234FA99300122139 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1AE234FA99300122139 /* Tile.swift */; };
+		4B52F1B1234FBFDB00122139 /* FlipAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1B0234FBFDB00122139 /* FlipAnimator.swift */; };
 		4BE405A6234A3FD60058FD97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE405A5234A3FD60058FD97 /* AppDelegate.swift */; };
 		4BE405A8234A3FD60058FD97 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE405A7234A3FD60058FD97 /* SceneDelegate.swift */; };
 		4BE405AF234A3FD80058FD97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BE405AE234A3FD80058FD97 /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		4B52F1A8234F9A0200122139 /* SquareCardFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareCardFlowLayout.swift; sourceTree = "<group>"; };
 		4B52F1AB234FA4CF00122139 /* TitledTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledTileView.swift; sourceTree = "<group>"; };
 		4B52F1AE234FA99300122139 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		4B52F1B0234FBFDB00122139 /* FlipAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipAnimator.swift; sourceTree = "<group>"; };
 		4BE405A2234A3FD60058FD97 /* Matchy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BE405A5234A3FD60058FD97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BE405A7234A3FD60058FD97 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				4B2EB861234A4E2200AB8A4B /* Gradients.swift */,
 				4B2EB86B234A507400AB8A4B /* CardIdentifierFactory.swift */,
 				4B52F1A8234F9A0200122139 /* SquareCardFlowLayout.swift */,
+				4B52F1B0234FBFDB00122139 /* FlipAnimator.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -229,7 +232,6 @@
 		4BE405A4234A3FD60058FD97 /* Matchy */ = {
 			isa = PBXGroup;
 			children = (
-				4B30E387234A68370049165C /* Interactor */,
 				4B30E381234A667A0049165C /* DataSources */,
 				4B2EB868234A4FA500AB8A4B /* Models */,
 				4B2EB863234A4E7000AB8A4B /* Protocols */,
@@ -237,6 +239,7 @@
 				4B2EB858234A4B2200AB8A4B /* Views */,
 				4B2EB813234A40DB00AB8A4B /* Routers */,
 				4B2EB80C234A405D00AB8A4B /* Supporting Files */,
+				4B30E387234A68370049165C /* Interactor */,
 				4B2EB80B234A405100AB8A4B /* View Controllers */,
 				4BE405B3234A3FD80058FD97 /* Info.plist */,
 			);
@@ -333,6 +336,7 @@
 				4B2EB862234A4E2200AB8A4B /* Gradients.swift in Sources */,
 				4B30E383234A66A50049165C /* GameCollectionViewDataSource.swift in Sources */,
 				4B2EB860234A4DEA00AB8A4B /* GameConfiguration.swift in Sources */,
+				4B52F1B1234FBFDB00122139 /* FlipAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

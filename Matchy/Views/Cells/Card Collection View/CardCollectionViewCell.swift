@@ -44,6 +44,14 @@ class CardCollectionViewCell: UICollectionViewCell {
         cardCellDelegate = delegate
         cardView.delegate = self
     }
+    
+    func hide(){
+        cardView.hide()
+    }
+    
+    func close(){
+        cardView.close()
+    }
 }
 
 extension CardCollectionViewCell: CardDelegate {

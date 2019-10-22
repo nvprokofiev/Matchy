@@ -10,7 +10,7 @@ import UIKit
 
 class TitledTileView: UIView, StyleHelper {
     
-    private var value: Int = 0 {
+    var value: Int = 0 {
         didSet {
             valueLabel.text = String(value)
         }
@@ -91,8 +91,7 @@ class TitledTileView: UIView, StyleHelper {
         ])
     }
     
-    func configureBy(title: String, initialValue: Int) {
+    func setTitle(_ title: String) {
         titleLabel.text = title
-        value = initialValue
     }
 }

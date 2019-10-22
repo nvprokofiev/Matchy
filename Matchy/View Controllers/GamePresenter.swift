@@ -23,11 +23,12 @@ class GamePresenter: NSObject {
         gameInteractor.start()
         gameInteractor.flipCardsBack = flipCardsBack
         gameInteractor.playAgain = playAgain
-        gameInteractor.gameEnded = gameEnded
+        gameInteractor.gameOver = gameOver
         gameInteractor.cardsMatched = cardsMatched
         
         dataSource.update(with: cards)
         view?.reloadData()
+        updateFlipsLabels()
     }
     
     func setDelegateAndDataSource(for collectionView: UICollectionView) {
@@ -36,7 +37,7 @@ class GamePresenter: NSObject {
     }
     
     private func flipCardsBack() {
-        view?.reloadCells(flippedCardItems)
+        flippedCardItems.forEach { $0.close() }
         flippedCardItems = []
     }
     
@@ -44,12 +45,19 @@ class GamePresenter: NSObject {
         view?.playAgain()
     }
     
-    private func gameEnded() {
-        view?.gameEnded()
+    private func gameOver() {
+        view?.gameOver()
     }
     
     private func cardsMatched(){
-        view?.cardsMatched()
+        flippedCardItems.forEach { $0.hide() }
+        flippedCardItems = []
+        view?.updateScoreLabel(with: gameInteractor.score)
+    }
+    
+    private func updateFlipsLabels() {
+        view?.updateFlipsLeftLabel(with: gameInteractor.flipsLeft)
+        view?.updateFlipsUsedLabel(with: gameInteractor.flipsUsed)
     }
 }
 
@@ -58,5 +66,6 @@ extension GamePresenter: CardCellDelegate {
     func didFlip(card: Card, in cell: CardCollectionViewCell) {
         flippedCardItems.append(cell)
         gameInteractor.flip(card)
+        updateFlipsLabels()
     }
 }

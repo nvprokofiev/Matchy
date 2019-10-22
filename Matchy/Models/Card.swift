@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Card: Equatable {
+class Card: Equatable {
     
     private(set) var id: Int
     private(set) var faceColor: TwoColorsGradient
@@ -24,5 +24,13 @@ struct Card: Equatable {
     
     static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.id == rhs.id
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Card {
+        let copy = Card()
+        copy.id = id
+        copy.faceColor = faceColor
+        copy.backColor = backColor
+        return copy
     }
 }

@@ -9,13 +9,15 @@
 import UIKit
 
 protocol CardDelegate: class {
-  func didFlip(_ card: Card)
+    func didFlip(_ card: Card)
 }
 
 class CardView: UIView, StyleHelper {
     
     private var card: Card?
     weak var delegate: CardDelegate?
+    
+    private let delay: TimeInterval = 0.3
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,38 +35,29 @@ class CardView: UIView, StyleHelper {
     }
     
     private func initialSetup() {
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(flip)))
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(open)))
     }
     
-    @objc private func flip(){
+    @objc private func open() {
         guard let card = card else { return }
-        card.isFaceUp ? closeCard() : openCard()
-        delegate?.didFlip(card)
-    }
-    
-    private func openCard() {
-        card?.isFaceUp.toggle()
-        guard let card = card else { return }
-//        isUserInteractionEnabled = false
+        isUserInteractionEnabled = false
         FlipAnimator(view: self, type: .open).animate {
             self.setGradientBackgroundColor(to: self, colors: card.faceColor)
+            self.delegate?.didFlip(card)
         }
     }
     
-    private func closeCard() {
-        card?.isFaceUp.toggle()
+    func close() {
         guard let card = card else { return }
-//        self.isUserInteractionEnabled = true
-        FlipAnimator(view: self, type: .close).animate {
+        FlipAnimator(view: self, type: .close).animate(delay: delay) {
             self.setGradientBackgroundColor(to: self, colors: card.backColor)
+            self.isUserInteractionEnabled = true
         }
     }
     
-    private func hide() {
-        isUserInteractionEnabled = false
-        FlipAnimator(view: self, type: .hide).animate {
+    func hide() {
+        FlipAnimator(view: self, type: .hide).animate(delay: delay) {
             
         }
     }
-    
 }

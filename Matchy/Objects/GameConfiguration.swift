@@ -16,6 +16,7 @@ struct GameConfiguration {
 struct GameLevel {
     
     var level = 1
+    let flipsBump = 3
     private let incrementor = 2
     
     mutating func levelUp() {
@@ -24,5 +25,9 @@ struct GameLevel {
     
     var pairsNumber: Int {
         return level * incrementor
+    }
+    
+    var initialFlipsValue: Int {
+        return pairsNumber
     }
 }

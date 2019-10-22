@@ -25,19 +25,27 @@ struct FlipAnimator {
     }
     
     @discardableResult
-    func animate(_ completion: @escaping () -> Void) -> FlipAnimator {
-        var flipTransform: CATransform3D
-        flipTransform = CATransform3DIdentity
-        flipTransform.m34 = 1.0 / -1000
-        flipTransform = CATransform3DRotate(flipTransform, .pi/2, 0.0, 1.0, 0.0)
+    func animate(delay: TimeInterval = 0.0, _ completion: @escaping () -> Void) -> FlipAnimator {
+        var animation = self
         
-        animate(firstAnimationsClosure: {
-            self.view.layer.transform = flipTransform
-        }, secondAnimationsCosure: {
-            let secondTrasnform = self.transform(for: self.type, of: flipTransform)
-            self.secondAnimationsClosure(for: secondTrasnform)
-        }, completion: completion)
-        return self
+        defer {
+            animation = self
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
+            var flipTransform: CATransform3D
+            flipTransform = CATransform3DIdentity
+            flipTransform.m34 = 1.0 / -1000
+            flipTransform = CATransform3DRotate(flipTransform, .pi/2, 0.0, 1.0, 0.0)
+            
+            self.animate(firstAnimationsClosure: {
+                self.view.layer.transform = flipTransform
+            }, secondAnimationsCosure: {
+                let secondTrasnform = self.transform(for: self.type, of: flipTransform)
+                self.secondAnimationsClosure(for: secondTrasnform)
+            }, completion: completion)
+        })
+        return animation
     }
     
     private func secondAnimationsClosure(for transform: CATransform3D?) {

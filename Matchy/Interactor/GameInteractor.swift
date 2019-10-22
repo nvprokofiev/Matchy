@@ -13,21 +13,22 @@ class GameInteractor {
     private var cards: [Card] = []
     
     private(set) var score: Int = 0
-    private var flipsUsed: Int = 0
     private var gameLevel = GameLevel()
     private var presenter: GamePresenter
-
+    
+    var flipsUsed: Int = 0
+    lazy var flipsLeft: Int = gameLevel.initialFlipsValue
+    
+    private var flippedCard: Card?
     
     init(presenter: GamePresenter) {
         self.presenter = presenter
     }
-    
-    private var flippedCard: Card?
-    
+
     //MARK: - Callbacks
     var cardsMatched: (() -> Void)?
     var flipCardsBack: (() -> Void)?
-    var gameEnded: (() -> Void)?
+    var gameOver: (() -> Void)?
     var playAgain: (() -> Void)?
     
     func start() {
@@ -41,10 +42,9 @@ class GameInteractor {
         gameLevel.levelUp()
         gameLevel.levelUp()
 
-        
         cards = (1 ... gameLevel.pairsNumber).map { _ in Card() }
         
-        cards.forEach{ cards.append($0) }
+        cards.forEach{ cards.append($0.copy()) }
 //        cards.shuffle()
     
         return cards
@@ -55,22 +55,30 @@ class GameInteractor {
     }
     
     func flip(_ card: Card){
-                
+  
         guard let flippedCard = flippedCard else {
             self.flippedCard = card
             return
         }
         
         if flippedCard == card {
+            score += 1
+            flipsLeft += gameLevel.flipsBump
+            flipsUsed += 1
             cardsMatched?()
         } else {
+            flipsLeft -= 1
+            flipsUsed += 1
             flipCardsBack?()
         }
-        
         self.flippedCard = nil
-
+        checkForGameOver()
     }
     
-    
+    private func checkForGameOver() {
+        if flipsLeft == 0 {
+            gameOver?()
+        }
+    }
 
 }

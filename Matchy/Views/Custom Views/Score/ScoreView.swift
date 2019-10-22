@@ -10,6 +10,12 @@ import UIKit
 
 class ScoreView: UIView, StyleHelper {
     
+    var value: Int = 0 {
+        didSet {
+            scoreLabel.text = String(value)
+        }
+    }
+
     private var tileView: TileView = {
         let view = TileView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -61,6 +67,5 @@ class ScoreView: UIView, StyleHelper {
             scoreLabel.leadingAnchor.constraint(equalTo: tileView.leadingAnchor, constant: 8),
             scoreLabel.trailingAnchor.constraint(equalTo: tileView.trailingAnchor, constant: -8)
         ])
-        
     }
 }
