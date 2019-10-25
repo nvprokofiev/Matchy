@@ -21,6 +21,7 @@
 		4B30E383234A66A50049165C /* GameCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B30E382234A66A50049165C /* GameCollectionViewDataSource.swift */; };
 		4B30E386234A67570049165C /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B30E385234A67570049165C /* GamePresenter.swift */; };
 		4B30E389234A684B0049165C /* GameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B30E388234A684B0049165C /* GameInteractor.swift */; };
+		4B436F9C2360001F003BDD18 /* TiledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B436F9B2360001F003BDD18 /* TiledButton.swift */; };
 		4B52F1A5234F8EB500122139 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1A4234F8EB500122139 /* ScoreView.swift */; };
 		4B52F1A9234F9A0200122139 /* SquareCardFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1A8234F9A0200122139 /* SquareCardFlowLayout.swift */; };
 		4B52F1AC234FA4CF00122139 /* TitledTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1AB234FA4CF00122139 /* TitledTileView.swift */; };
@@ -47,6 +48,7 @@
 		4B30E382234A66A50049165C /* GameCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		4B30E385234A67570049165C /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
 		4B30E388234A684B0049165C /* GameInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInteractor.swift; sourceTree = "<group>"; };
+		4B436F9B2360001F003BDD18 /* TiledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiledButton.swift; sourceTree = "<group>"; };
 		4B52F1A4234F8EB500122139 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		4B52F1A8234F9A0200122139 /* SquareCardFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareCardFlowLayout.swift; sourceTree = "<group>"; };
 		4B52F1AB234FA4CF00122139 /* TitledTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledTileView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				4B52F1AA234FA49F00122139 /* Titled Tile */,
 				4B52F1A3234F8E9D00122139 /* Score */,
 				4B2EB85C234A4B4C00AB8A4B /* Card */,
+				4B436F9B2360001F003BDD18 /* TiledButton.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B436F9C2360001F003BDD18 /* TiledButton.swift in Sources */,
 				4B2EB815234A40F800AB8A4B /* GameRouter.swift in Sources */,
 				4B52F1AF234FA99300122139 /* Tile.swift in Sources */,
 				4B52F1A5234F8EB500122139 /* ScoreView.swift in Sources */,

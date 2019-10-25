@@ -13,7 +13,7 @@ class GameInteractor {
     private var cards: [Card] = []
     
     private(set) var score: Int = 0
-    private var gameLevel = GameLevel()
+    var gameLevel = GameLevel()
     private var presenter: GamePresenter
     
     var flipsUsed: Int = 0
@@ -30,15 +30,14 @@ class GameInteractor {
     var flipCardsBack: (() -> Void)?
     var gameOver: (() -> Void)?
     var playAgain: (() -> Void)?
-    
+    var levelUp: (() -> Void)?
+
     func start() {
         cards = getCardSet()
     }
     
     private func getCardSet()-> [Card] {
         CardIdentifierFactory.reset()
-        gameLevel.levelUp()
-        gameLevel.levelUp()
         gameLevel.levelUp()
         gameLevel.levelUp()
 
@@ -62,6 +61,7 @@ class GameInteractor {
         }
         
         if flippedCard == card {
+            [flippedCard, card].forEach { $0.isMatched = true }
             score += 1
             flipsLeft += gameLevel.flipsBump
             flipsUsed += 1

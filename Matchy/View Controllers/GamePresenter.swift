@@ -18,6 +18,10 @@ class GamePresenter: NSObject {
     }
     
     private var flippedCardItems: [CardCollectionViewCell] = []
+    
+    var level: Int {
+        return gameInteractor.gameLevel.level
+    }
         
     func viewDidLoad() {
         gameInteractor.start()
@@ -25,9 +29,10 @@ class GamePresenter: NSObject {
         gameInteractor.playAgain = playAgain
         gameInteractor.gameOver = gameOver
         gameInteractor.cardsMatched = cardsMatched
+        gameInteractor.levelUp = levelUp
         
         dataSource.update(with: cards)
-        view?.reloadData()
+        view?.startNewLevel()
         updateFlipsLabels()
     }
     
@@ -47,6 +52,10 @@ class GamePresenter: NSObject {
     
     private func gameOver() {
         view?.gameOver()
+    }
+    
+    private func levelUp() {
+//        view?.startNewLevel()
     }
     
     private func cardsMatched(){

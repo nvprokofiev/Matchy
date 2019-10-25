@@ -52,6 +52,11 @@ class CardCollectionViewCell: UICollectionViewCell {
     func close(){
         cardView.close()
     }
+    
+    func showAndHide(){
+        cardView.showAndHide()
+    }
+    
 }
 
 extension CardCollectionViewCell: CardDelegate {

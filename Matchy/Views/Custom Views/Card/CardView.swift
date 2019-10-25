@@ -60,4 +60,24 @@ class CardView: UIView, StyleHelper {
             
         }
     }
+    
+    func show() {
+        guard let card = card else { return }
+        
+        FlipAnimator(view: self, type: .open).animate(delay: 1.2) {
+            self.setGradientBackgroundColor(to: self, colors: card.faceColor)
+        }.animate(delay: 2.4) {
+            self.setGradientBackgroundColor(to: self, colors: card.backColor)
+        }
+    }
+    
+    func showAndHide(){
+        guard let card = card, !card.isMatched else { return }
+        
+        FlipAnimator(view: self, type: .open).animate(delay: 1.2) {
+            self.setGradientBackgroundColor(to: self, colors: card.faceColor)
+        }.animate(delay: 2.4) {
+            self.alpha = 0.0
+        }
+    }
 }
