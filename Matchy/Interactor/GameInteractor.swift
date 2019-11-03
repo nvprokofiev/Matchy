@@ -38,8 +38,6 @@ class GameInteractor {
     
     private func getCardSet()-> [Card] {
         CardIdentifierFactory.reset()
-        gameLevel.levelUp()
-        gameLevel.levelUp()
 
         cards = (1 ... gameLevel.pairsNumber).map { _ in Card() }
         
@@ -72,11 +70,15 @@ class GameInteractor {
             flipCardsBack?()
         }
         self.flippedCard = nil
-        checkForGameOver()
+        checkForEndLevel()
     }
     
-    private func checkForGameOver() {
-        if flipsLeft == 0 {
+    private func checkForEndLevel() {
+        if score == cards.count / 2 {
+            gameLevel.levelUp()
+            start()
+            levelUp?()
+        } else if flipsLeft == 0 {
             gameOver?()
         }
     }

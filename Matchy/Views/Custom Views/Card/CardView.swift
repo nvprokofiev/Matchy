@@ -43,7 +43,10 @@ class CardView: UIView, StyleHelper {
         isUserInteractionEnabled = false
         FlipAnimator(view: self, type: .open).animate {
             self.setGradientBackgroundColor(to: self, colors: card.faceColor)
-            self.delegate?.didFlip(card)
+            //MARK: - TO FIX
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+                self.delegate?.didFlip(card)
+            })
         }
     }
     

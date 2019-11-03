@@ -55,7 +55,10 @@ class GamePresenter: NSObject {
     }
     
     private func levelUp() {
-//        view?.startNewLevel()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
+            self.dataSource.update(with: self.cards)
+            self.view?.startNewLevel()
+        })
     }
     
     private func cardsMatched(){

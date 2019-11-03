@@ -24,7 +24,6 @@ class GameViewController: UIViewController {
     private lazy var levelLabel: UILabel = {
         let levelLabel = UILabel()
         levelLabel.translatesAutoresizingMaskIntoConstraints = false
-        levelLabel.text = "Level \(presenter.level)"
         levelLabel.numberOfLines = 1
         levelLabel.font = .systemFont(ofSize: 30, weight: .bold)
         levelLabel.adjustsFontSizeToFitWidth = true
@@ -46,6 +45,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         addLevelLabel()
+
         setupPresenter()
         collectionView.register(CardCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: CardCollectionViewCell.self))
         collectionView.setCollectionViewLayout(SquareCardFlowLayout(for: collectionView).layout, animated: true)
@@ -53,7 +53,6 @@ class GameViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
     }
     
     private func setupViews() {
@@ -83,7 +82,6 @@ class GameViewController: UIViewController {
     
     private func addLevelLabel() {
         view.addSubview(levelLabel)
-        
         NSLayoutConstraint.activate([
             levelLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             levelLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -91,9 +89,9 @@ class GameViewController: UIViewController {
         ])
     }
     
-    private func animateAppearance(of view: UIView,  completion: @escaping (()->())) {
+    private func animateAppearance(of view: UIView,  completion: @escaping (()->()) = {} ) {
         view.alpha = 0.0
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             view.alpha = 1.0
         }, completion: {_ in
             completion()
@@ -118,11 +116,14 @@ class GameViewController: UIViewController {
     }
     
     func startNewLevel() {
+        levelLabel.text = "Level \(presenter.level)"
         self.animateAppearance(of: levelLabel, completion: { [weak self] in
             guard let `self` = self else { return }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                self.levelLabel.isHidden = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+//                self.levelLabel.isHidden = true
                 self.collectionView.reloadData()
+                self.animateAppearance(of: self.collectionView)
+                
             })
         })
     }
