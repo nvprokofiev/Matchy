@@ -44,11 +44,86 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        addLevelLabel()
+//        addLevelLabel()
+//
+//        setupPresenter()
+//        collectionView.register(CardCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: CardCollectionViewCell.self))
+//        collectionView.setCollectionViewLayout(SquareCardFlowLayout(for: collectionView).layout, animated: true)
+        
+        
+        var number: Double = 44.0
 
-        setupPresenter()
-        collectionView.register(CardCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: CardCollectionViewCell.self))
-        collectionView.setCollectionViewLayout(SquareCardFlowLayout(for: collectionView).layout, animated: true)
+        var sq = sqrt(number)
+
+        var decimalPart = sq.truncatingRemainder(dividingBy: 1)
+
+        var columns = 0.0
+        var fullRows = 0.0
+        var lastRow = 0.0
+
+        if decimalPart >= 0.5 {
+            columns = ceil(sq)
+            fullRows = columns - 1
+
+        } else if decimalPart < 0.5 {
+            columns = floor(sq)
+            fullRows = columns
+        } else {
+            columns = sq
+            fullRows = columns
+        }
+
+        lastRow = number - columns * fullRows
+
+        let spacing: CGFloat = 8.0
+        let margin: CGFloat = 16.0
+        let mainWidth = UIScreen.main.bounds.width
+
+        var itemSize: CGSize {
+            let totalHorizontalSpacing = spacing * (CGFloat(columns - 1.0))
+            let sizeConstant = (mainWidth - margin * 2 - totalHorizontalSpacing) / CGFloat(columns)
+            
+            return CGSize(width: sizeConstant, height: sizeConstant)
+        }
+        
+        for r in 0 ..< Int(fullRows) {
+            for c in 0 ..< Int(columns) {
+                
+                var x = margin
+                if c > 0 {
+                    x = (spacing + itemSize.width) * CGFloat(c) + margin
+                }
+                
+                let y = collectionView.frame.minY + (spacing + itemSize.height) * CGFloat(r)
+                
+                let frame = CGRect(x: x, y: y, width: itemSize.width, height: itemSize.height)
+                let cardView = CardView(frame: frame)
+                cardView.configure(by: Card())
+
+                view.addSubview(cardView)
+            }
+        }
+        
+        for l in 0 ..< Int(lastRow) {
+            
+            var x = spacing
+            if l == 0 {
+                x = (mainWidth - itemSize.width * CGFloat(lastRow) - CGFloat(lastRow - 1) * spacing) / 2
+            } else {
+                x = (mainWidth - itemSize.width * CGFloat(lastRow) - CGFloat(lastRow - 1) * spacing) / 2 + (itemSize.width) * CGFloat(l) + spacing * CGFloat(l)
+            }
+            
+            let y = collectionView.frame.minY + (spacing + itemSize.height) * CGFloat(fullRows)
+
+            let frame = CGRect(x: x, y: y, width: itemSize.width, height: itemSize.height)
+            let cardView = CardView(frame: frame)
+            cardView.configure(by: Card())
+
+            view.addSubview(cardView)
+            
+            
+
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

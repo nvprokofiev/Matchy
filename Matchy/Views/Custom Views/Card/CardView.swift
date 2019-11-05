@@ -31,7 +31,7 @@ class CardView: UIView, StyleHelper {
     
     func configure(by card: Card) {
         self.card = card
-        applyStyle(to: self, colors: card.backColor)
+        applyStyle(to: self, colors: card.faceColor)
     }
     
     private func initialSetup() {
