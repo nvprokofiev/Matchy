@@ -20,12 +20,12 @@ extension StyleHelper where Self: UIView {
     gradientLayer.locations = [0.0, 1.0]
     gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
     gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-    gradientLayer.cornerRadius = 20.0
+    gradientLayer.cornerRadius = view.bounds.width / 6
     layer.insertSublayer(gradientLayer, at: 0)
   }
   
   func setCornerRadius(to view: UIView){
-    view.layer.cornerRadius = 20.0
+    view.layer.cornerRadius = view.bounds.width / 6
     view.layer.masksToBounds = true
     view.layer.borderWidth = 0.5
     view.layer.borderColor = UIColor.clear.cgColor

@@ -16,7 +16,7 @@ class TiledButton: UIButton, StyleHelper {
     init(title: String, action: @escaping ()->()){
         self.title = title
         self.action = action
-        
+    
         super.init(frame: .zero)
         initialSetup()
     }

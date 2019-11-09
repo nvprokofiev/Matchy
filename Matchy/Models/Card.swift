@@ -8,8 +8,8 @@
 
 import UIKit
 
-class Card: Equatable {
-    
+class Card {
+
     private(set) var id: Int
     private(set) var faceColor: TwoColorsGradient
     private(set) var backColor: TwoColorsGradient
@@ -22,15 +22,17 @@ class Card: Equatable {
         self.backColor = Gradients().defaultColorSet()
     }
     
-    static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.id == rhs.id
-    }
-    
     func copy(with zone: NSZone? = nil) -> Card {
         let copy = Card()
-        copy.id = id
         copy.faceColor = faceColor
         copy.backColor = backColor
         return copy
+    }
+}
+
+extension Card: Equatable {
+    
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.faceColor == rhs.faceColor
     }
 }

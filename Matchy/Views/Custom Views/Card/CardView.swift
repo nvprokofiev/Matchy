@@ -14,7 +14,7 @@ protocol CardDelegate: class {
 
 class CardView: UIView, StyleHelper {
     
-    private var card: Card?
+     var card: Card?
     weak var delegate: CardDelegate?
     
     private let delay: TimeInterval = 0.3
@@ -31,7 +31,7 @@ class CardView: UIView, StyleHelper {
     
     func configure(by card: Card) {
         self.card = card
-        applyStyle(to: self, colors: card.faceColor)
+        applyStyle(to: self, colors: card.backColor)
     }
     
     private func initialSetup() {
@@ -39,6 +39,7 @@ class CardView: UIView, StyleHelper {
     }
     
     @objc private func open() {
+        
         guard let card = card else { return }
         isUserInteractionEnabled = false
         FlipAnimator(view: self, type: .open).animate {

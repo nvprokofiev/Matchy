@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameViewController" customModule="Matchy" customModuleProvider="target">
             <connections>
-                <outlet property="collectionView" destination="khd-fz-DbO" id="nDM-u2-zk5"/>
                 <outlet property="flipsLeftView" destination="zhj-g7-C22" id="T95-WS-GO6"/>
                 <outlet property="flipsUsedView" destination="j9h-dL-qWl" id="FTi-3r-p05"/>
                 <outlet property="scoreView" destination="C4i-z7-gxb" id="keb-ae-mYE"/>
+                <outlet property="topView" destination="Tww-Yz-PTO" id="Th3-N5-LRF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -82,25 +82,11 @@
                         <constraint firstAttribute="bottom" secondItem="cSb-7k-thf" secondAttribute="bottom" constant="8" id="o2D-rV-Usa"/>
                     </constraints>
                 </view>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="khd-fz-DbO">
-                    <rect key="frame" x="0.0" y="244" width="414" height="652"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ogi-yJ-Ch2">
-                        <size key="itemSize" width="50" height="50"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="khd-fz-DbO" firstAttribute="top" secondItem="Tww-Yz-PTO" secondAttribute="bottom" constant="24" id="7bQ-sv-4GB"/>
                 <constraint firstItem="Tww-Yz-PTO" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="9v0-3c-TKY"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="khd-fz-DbO" secondAttribute="trailing" id="E8E-2d-LbW"/>
                 <constraint firstItem="Tww-Yz-PTO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="axj-rf-Hxp"/>
-                <constraint firstItem="khd-fz-DbO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jSI-Vs-iHA"/>
-                <constraint firstAttribute="bottom" secondItem="khd-fz-DbO" secondAttribute="bottom" id="q8u-IR-bzu"/>
                 <constraint firstItem="Tww-Yz-PTO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qCv-kj-izq"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

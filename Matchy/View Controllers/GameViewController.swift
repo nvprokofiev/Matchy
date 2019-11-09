@@ -10,10 +10,14 @@ import UIKit
 
 class GameViewController: UIViewController {
 
-    @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var scoreView: ScoreView!
+    @IBOutlet private weak var topView: UIView!
     @IBOutlet private weak var flipsLeftView: TitledTileView!
     @IBOutlet private weak var flipsUsedView: TitledTileView!
+
+    private let presenter = GamePresenter()
+    private var cards: [Int: CardView] = [:]
+    private var flippedCards: [CardView] = []
     
     private lazy var playAgainButton: TiledButton = {
         let playAgainButton = TiledButton(title: "Play Again", action: playAgain )
@@ -29,7 +33,6 @@ class GameViewController: UIViewController {
         levelLabel.adjustsFontSizeToFitWidth = true
         levelLabel.baselineAdjustment = .alignCenters
         levelLabel.textAlignment = .center
-        levelLabel.alpha = 0.0
         if #available(iOS 13.0, *) {
             levelLabel.textColor = .label
         } else {
@@ -37,99 +40,15 @@ class GameViewController: UIViewController {
         }
         return levelLabel
     }()
-    
-//    var cards: [Card] = []
-    private let presenter = GamePresenter()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-//        addLevelLabel()
-//
-//        setupPresenter()
-//        collectionView.register(CardCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: CardCollectionViewCell.self))
-//        collectionView.setCollectionViewLayout(SquareCardFlowLayout(for: collectionView).layout, animated: true)
-        
-        
-        var number: Double = 44.0
-
-        var sq = sqrt(number)
-
-        var decimalPart = sq.truncatingRemainder(dividingBy: 1)
-
-        var columns = 0.0
-        var fullRows = 0.0
-        var lastRow = 0.0
-
-        if decimalPart >= 0.5 {
-            columns = ceil(sq)
-            fullRows = columns - 1
-
-        } else if decimalPart < 0.5 {
-            columns = floor(sq)
-            fullRows = columns
-        } else {
-            columns = sq
-            fullRows = columns
-        }
-
-        lastRow = number - columns * fullRows
-
-        let spacing: CGFloat = 8.0
-        let margin: CGFloat = 16.0
-        let mainWidth = UIScreen.main.bounds.width
-
-        var itemSize: CGSize {
-            let totalHorizontalSpacing = spacing * (CGFloat(columns - 1.0))
-            let sizeConstant = (mainWidth - margin * 2 - totalHorizontalSpacing) / CGFloat(columns)
-            
-            return CGSize(width: sizeConstant, height: sizeConstant)
-        }
-        
-        for r in 0 ..< Int(fullRows) {
-            for c in 0 ..< Int(columns) {
-                
-                var x = margin
-                if c > 0 {
-                    x = (spacing + itemSize.width) * CGFloat(c) + margin
-                }
-                
-                let y = collectionView.frame.minY + (spacing + itemSize.height) * CGFloat(r)
-                
-                let frame = CGRect(x: x, y: y, width: itemSize.width, height: itemSize.height)
-                let cardView = CardView(frame: frame)
-                cardView.configure(by: Card())
-
-                view.addSubview(cardView)
-            }
-        }
-        
-        for l in 0 ..< Int(lastRow) {
-            
-            var x = spacing
-            if l == 0 {
-                x = (mainWidth - itemSize.width * CGFloat(lastRow) - CGFloat(lastRow - 1) * spacing) / 2
-            } else {
-                x = (mainWidth - itemSize.width * CGFloat(lastRow) - CGFloat(lastRow - 1) * spacing) / 2 + (itemSize.width) * CGFloat(l) + spacing * CGFloat(l)
-            }
-            
-            let y = collectionView.frame.minY + (spacing + itemSize.height) * CGFloat(fullRows)
-
-            let frame = CGRect(x: x, y: y, width: itemSize.width, height: itemSize.height)
-            let cardView = CardView(frame: frame)
-            cardView.configure(by: Card())
-
-            view.addSubview(cardView)
-            
-            
-
-        }
+        addLevelLabel()
+        setupPresenter()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
+        
+    //MARK: - Initial setup
     private func setupViews() {
         flipsLeftView.setTitle("Left")
         flipsUsedView.setTitle("Attemps")
@@ -137,14 +56,11 @@ class GameViewController: UIViewController {
     }
     
     private func setupPresenter() {
-        
         presenter.view = self
         presenter.viewDidLoad()
-        presenter.setDelegateAndDataSource(for: collectionView)
     }
     
     //MARK: - Add Views
-    
     private func addPlayAgainButton(){
         view.addSubview(playAgainButton)
         NSLayoutConstraint.activate([
@@ -164,42 +80,57 @@ class GameViewController: UIViewController {
         ])
     }
     
-    private func animateAppearance(of view: UIView,  completion: @escaping (()->()) = {} ) {
-        view.alpha = 0.0
-        UIView.animate(withDuration: 0.3, animations: {
-            view.alpha = 1.0
-        }, completion: {_ in
-            completion()
-        })
+    func addCardViews(for cards: [Card]) {
+        var cards = cards
+        let containerFrame = CGRect(x: 0,
+                                    y: topView.frame.maxY,
+                                    width: UIScreen.main.bounds.width,
+                                    height: UIScreen.main.bounds.height - topView.frame.maxY)
+        
+        let gridProvider = GridProvider(of: cards.count, in: containerFrame)
+        
+        for frame in gridProvider.grid {
+            let card = cards.removeFirst()
+            let cardView = CardView(frame: frame)
+            cardView.delegate = presenter
+            cardView.configure(by: card)
+            self.cards[card.id] = cardView
+
+            view.addSubview(cardView)
+        }
     }
     
     //MARK: - Game Callbacks
     
+    func didFlip(_ card: Card) {
+        guard let cardView = cards[card.id] else { return }
+        flippedCards.append(cardView)
+    }
+    
     func flipCardsBack(){
-        
+        flippedCards.forEach { $0.close() }
+        flippedCards.removeAll()
     }
     
     func cardsMatched() {
+        flippedCards.forEach { $0.hide() }
+        flippedCards.removeAll()
     }
     
     func gameOver() {
-        collectionView.visibleCells.forEach { cell in
-            guard let cell = cell as? CardCollectionViewCell else { return }
-            cell.showAndHide()
-        }
+        cards.values.forEach { $0.showAndHide() }
         addPlayAgainButton()
+        playAgainButton.action()
     }
     
-    func startNewLevel() {
+    func startNewLevel(with cards: [Card]) {
         levelLabel.text = "Level \(presenter.level)"
-        self.animateAppearance(of: levelLabel, completion: { [weak self] in
-            guard let `self` = self else { return }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-//                self.levelLabel.isHidden = true
-                self.collectionView.reloadData()
-                self.animateAppearance(of: self.collectionView)
-                
-            })
+        levelLabel.isHidden = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.levelLabel.isHidden = true
+            self.removeCardViews()
+            self.addCardViews(for: cards)
         })
     }
     
@@ -224,5 +155,10 @@ class GameViewController: UIViewController {
     
     func updateScoreLabel(with value: Int) {
         scoreView.value = value
+    }
+    
+    private func removeCardViews() {
+        Array(self.cards.values).forEach{ $0.removeFromSuperview() }
+        self.cards = [:]
     }
 }
