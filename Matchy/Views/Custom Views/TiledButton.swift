@@ -36,11 +36,6 @@ class TiledButton: UIButton, StyleHelper {
         titleLabel?.baselineAdjustment = .alignCenters
         
         setTitle(title, for: .normal)
-        addTarget(self, action: #selector(callback), for: .touchUpInside)
-    }
-    
-    @objc private func callback() -> Void {
-        action()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -49,11 +44,13 @@ class TiledButton: UIButton, StyleHelper {
             self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         }
     }
-    
+
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
-        UIView.animate(withDuration: 0.1) {
+        UIView.animate(withDuration: 0.1, animations: {
             self.transform = .identity
-        }
+        }, completion: {_ in
+            self.action()
+        })
     }
 }

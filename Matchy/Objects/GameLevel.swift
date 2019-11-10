@@ -33,4 +33,9 @@ struct GameLevel {
         }
         value = getNewValue(from: value)
     }
+    
+    mutating func reset() {
+        level = 1
+        value = 2
+    }
 }

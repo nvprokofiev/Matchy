@@ -34,8 +34,13 @@ class GameInteractor {
 
     func start() {
         levelScore = 0
-        flipsLeft = gameLevel.value
+        flipsLeft += gameLevel.value
         cards = getCardSet()
+    }
+    
+    func playAgain() {
+        gameLevel.reset()
+        start()
     }
     
     private func getCardSet()-> [Card] {
@@ -66,7 +71,7 @@ class GameInteractor {
             levelScore += 1
             
             //FIXME
-            flipsLeft += 2
+            flipsLeft += 1
             flipsUsed += 1
             cardsMatched?()
         } else {

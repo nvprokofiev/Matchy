@@ -18,9 +18,9 @@ class GameViewController: UIViewController {
     private let presenter = GamePresenter()
     private var cards: [Int: CardView] = [:]
     private var flippedCards: [CardView] = []
-    
+        
     private lazy var playAgainButton: TiledButton = {
-        let playAgainButton = TiledButton(title: "Play Again", action: playAgain )
+        let playAgainButton = TiledButton(title: "Play Again", action: playAgain)
         playAgainButton.translatesAutoresizingMaskIntoConstraints = false
         return playAgainButton
     }()
@@ -62,6 +62,7 @@ class GameViewController: UIViewController {
     
     //MARK: - Add Views
     private func addPlayAgainButton(){
+        
         view.addSubview(playAgainButton)
         NSLayoutConstraint.activate([
             playAgainButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -119,8 +120,9 @@ class GameViewController: UIViewController {
     
     func gameOver() {
         cards.values.forEach { $0.showAndHide() }
-        addPlayAgainButton()
-        playAgainButton.action()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.6, execute: {
+            self.addPlayAgainButton()
+        })
     }
     
     func startNewLevel(with cards: [Card]) {
@@ -135,14 +137,10 @@ class GameViewController: UIViewController {
     }
     
     func playAgain() {
-        print(#function)
+        playAgainButton.removeFromSuperview()
+        presenter.playAgain()
     }
-    
-    //    func reloadCells(_ cells: [CardCollectionViewCell]) {
-    //        let indexPaths: [IndexPath] = cells.compactMap { (collectionView.indexPath(for: $0))}
-    //        collectionView.reloadItems(at: indexPaths)
-    //    }
-    
+
     //MARK: - Update Views
 
     func updateFlipsLeftLabel(with value: Int){
