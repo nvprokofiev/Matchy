@@ -15,10 +15,12 @@ class GameOverView: UIView {
 
     private var bestResult: Int
     private var playAgainAction: ()->()
+    
+    
 
     private lazy var gameOverView: UIView = {
-        let gameView = TitledTileView()
-        let overView = TitledTileView()
+        let gameView = TextTileView()
+        let overView = TextTileView()
         gameView.title = "Game"
         overView.title = "Over"
         
@@ -40,9 +42,9 @@ class GameOverView: UIView {
     }()
 
     private lazy var bestResultView: UIView = {
-        let view = SubtitledTileView()
+        let view = TextTileView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setSubtitle("Best Result")
+        view.subtitle = "Best Result"
         view.title = String(describing: bestResult)
         return view
     }()
@@ -51,11 +53,15 @@ class GameOverView: UIView {
         self.playAgainAction = playAgainAction
         self.bestResult = bestResult
         super.init(frame: .zero)
-        setupViews()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupViews()
     }
 
     private func setupViews() {
@@ -63,11 +69,7 @@ class GameOverView: UIView {
         addBestResultView()
         addPlayAgainButton()
     }
-    
-    @objc func pp(){
-        print("tapped")
-    }
-    
+
     private func addGameOverView() {
         addSubview(gameOverView)
         

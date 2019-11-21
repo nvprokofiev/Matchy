@@ -69,10 +69,12 @@ class TextTileView: UIView {
     }
 
     private func initialSetup() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.00001, execute: {
-            self.applyTileStyle()
-        })
         addStackView()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.applyTileStyle()
     }
 
     private func addStackView() {
@@ -88,5 +90,9 @@ class TextTileView: UIView {
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
         ])
+    }
+    
+    func setFont(_ font: UIFont) {
+        titleLabel.font = font
     }
 }

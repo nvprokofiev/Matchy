@@ -71,9 +71,6 @@ class GameViewController: UIViewController {
             gameOverView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             gameOverView.heightAnchor.constraint(equalToConstant: 200)
         ])
-        
-        gameOverView.isUserInteractionEnabled = true
-
     }
     
     private func addLevelLabel() {
