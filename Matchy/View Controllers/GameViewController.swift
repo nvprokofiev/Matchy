@@ -10,19 +10,19 @@ import UIKit
 
 class GameViewController: UIViewController {
 
-    @IBOutlet private weak var scoreView: ScoreView!
+    @IBOutlet private weak var scoreView: TextTileView!
     @IBOutlet private weak var topView: UIView!
-    @IBOutlet private weak var flipsLeftView: TitledTileView!
-    @IBOutlet private weak var flipsUsedView: TitledTileView!
+    @IBOutlet private weak var flipsLeftView: TextTileView!
+    @IBOutlet private weak var flipsUsedView: TextTileView!
 
     private let presenter = GamePresenter()
     private var cards: [Int: CardView] = [:]
     private var flippedCards: [CardView] = []
-        
-    private lazy var playAgainButton: TiledButton = {
-        let playAgainButton = TiledButton(title: "Play Again", action: playAgain)
-        playAgainButton.translatesAutoresizingMaskIntoConstraints = false
-        return playAgainButton
+
+    private lazy var gameOverView: GameOverView = {
+        let gameOverView = GameOverView(bestResult: 231, playAgainAction: playAgain)
+        gameOverView.translatesAutoresizingMaskIntoConstraints = false
+        return gameOverView
     }()
     
     private lazy var levelLabel: UILabel = {
@@ -43,16 +43,17 @@ class GameViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupViews()
         addLevelLabel()
         setupPresenter()
     }
-        
+
     //MARK: - Initial setup
     private func setupViews() {
-        flipsLeftView.setTitle("Left")
-        flipsUsedView.setTitle("Attemps")
-        scoreView.value = 0
+        flipsLeftView.subtitle = "Left"
+        flipsUsedView.subtitle = "Attemps"
+        scoreView.title = String(describing: 0)
     }
     
     private func setupPresenter() {
@@ -61,15 +62,18 @@ class GameViewController: UIViewController {
     }
     
     //MARK: - Add Views
-    private func addPlayAgainButton(){
-        
-        view.addSubview(playAgainButton)
+    private func addGameOverView(){
+    
+        view.addSubview(gameOverView)
         NSLayoutConstraint.activate([
-            playAgainButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            playAgainButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            playAgainButton.heightAnchor.constraint(equalToConstant: 60),
-            playAgainButton.widthAnchor.constraint(equalToConstant: view.frame.width / 2)
+            gameOverView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant:  20),
+            gameOverView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            gameOverView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            gameOverView.heightAnchor.constraint(equalToConstant: 200)
         ])
+        
+        gameOverView.isUserInteractionEnabled = true
+
     }
     
     private func addLevelLabel() {
@@ -120,14 +124,15 @@ class GameViewController: UIViewController {
     
     func gameOver() {
         cards.values.forEach { $0.showAndHide() }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.6, execute: {
-            self.addPlayAgainButton()
+        DispatchQueue.main.asyncAfter(deadline: .now() + FlipAnimationConstants.hideDuration, execute: {
+            self.addGameOverView()
         })
     }
     
     func startNewLevel(with cards: [Card]) {
-        levelLabel.text = "Level \(presenter.level)"
-        levelLabel.isHidden = false
+                
+        self.levelLabel.text = "Level \(self.presenter.level)"
+        self.levelLabel.isHidden = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             self.levelLabel.isHidden = true
@@ -137,22 +142,22 @@ class GameViewController: UIViewController {
     }
     
     func playAgain() {
-        playAgainButton.removeFromSuperview()
+        gameOverView.removeFromSuperview()
         presenter.playAgain()
     }
 
     //MARK: - Update Views
 
     func updateFlipsLeftLabel(with value: Int){
-        flipsLeftView.value = value
+        flipsLeftView.title = String(describing: value)
     }
     
     func updateFlipsUsedLabel(with value: Int){
-        flipsUsedView.value = value
+        flipsUsedView.title = String(describing: value)
     }
     
     func updateScoreLabel(with value: Int) {
-        scoreView.value = value
+        scoreView.title = String(describing: value)
     }
     
     private func removeCardViews() {

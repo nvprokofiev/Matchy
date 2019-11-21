@@ -10,70 +10,103 @@ import UIKit
 
 struct FlipAnimator {
     
-    enum AnimationType {
-        case open
-        case close
-        case hide
-    }
-    
-    private let view: UIView
-    private let type: AnimationType
-    
-    init(view: UIView, type: AnimationType) {
-        self.view = view
-        self.type = type
-    }
-    
-    @discardableResult
-    func animate(delay: TimeInterval = 0.0, _ completion: @escaping () -> Void) -> FlipAnimator {
-        var animation = self
+    func open(_ view: UIView, duration: TimeInterval = FlipAnimationConstants.duration, pause: TimeInterval = FlipAnimationConstants.pause, onHalfComplete: (()->())? = nil, onComplete: (()->())? = nil) {
         
-        defer {
-            animation = self
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
-            var flipTransform: CATransform3D
-            flipTransform = CATransform3DIdentity
-            flipTransform.m34 = 1.0 / -1000
-            flipTransform = CATransform3DRotate(flipTransform, .pi/2, 0.0, 1.0, 0.0)
-            
-            self.animate(firstAnimationsClosure: {
-                self.view.layer.transform = flipTransform
-            }, secondAnimationsCosure: {
-                let secondTrasnform = self.transform(for: self.type, of: flipTransform)
-                self.secondAnimationsClosure(for: secondTrasnform)
-            }, completion: completion)
-        })
-        return animation
-    }
-    
-    private func secondAnimationsClosure(for transform: CATransform3D?) {
-        guard let flipTransform = transform else {
-            return
-        }
-        UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.8, options: [], animations: {
-            self.view.layer.transform = flipTransform
+        animate(view, wirh: .open, duration: duration, onHalfComplete: {
+            onHalfComplete?()
+        }, onComplete: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + pause, execute: {
+                onComplete?()
+            })
         })
     }
     
-    private func animate(firstAnimationsClosure: @escaping () -> Void,
-                         secondAnimationsCosure: (() -> Void)?,
-                         completion: @escaping () -> Void) {
-        UIView.animate(withDuration: 0.25, delay: 0.0, options: [.curveEaseIn], animations: {
-            firstAnimationsClosure()
+    func close(_ view: UIView, duration: TimeInterval = FlipAnimationConstants.duration, onHalfComplete: (()->())? = nil, onComplete: (()->())? = nil) {
+        
+        animate(view, wirh: .close, duration: duration, onHalfComplete: {
+            onHalfComplete?()
+        }, onComplete: {
+            onComplete?()
+        })
+    }
+    
+    func show(_ view: UIView, duration: TimeInterval = FlipAnimationConstants.duration, pause: TimeInterval = FlipAnimationConstants.pause, onHalfComplete: (()->())? = nil, onComplete: (()->())? = nil) {
+        
+        self.open(view, onHalfComplete: {
+            onHalfComplete?()
+        }, onComplete: {
+            self.close(view, onHalfComplete: {
+                onComplete?()
+            })
+        })
+    }
+    
+    func hide(_ view: UIView, duration: TimeInterval = FlipAnimationConstants.duration, onComplete: (()->())? = nil) {
+        
+        UIView.animate(withDuration: duration / 2, animations: {
+            view.layer.transform = FlipTransformType.close.halfCycleTransform
         }, completion: {_ in
-            completion()
-            secondAnimationsCosure?()
+            onComplete?()
         })
     }
     
-    private func transform(for type: AnimationType, of existingTransorm: CATransform3D) -> CATransform3D? {
-        switch type {
-        case .close: return CATransform3DRotate(existingTransorm, .pi/2, 0.0, 1.0, 0.0)
-        case .open: return CATransform3DRotate(existingTransorm, -.pi/2, 0.0, 1.0, 0.0)
-        default: return nil
-        }
+    func showHide(_ view: UIView, duration: TimeInterval = FlipAnimationConstants.duration, pause: TimeInterval = FlipAnimationConstants.pause, delay: TimeInterval = FlipAnimationConstants.delay, onHalfComplete: (()->())? = nil, onComplete: (()->())? = nil) {
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
+            self.open(view, onHalfComplete: {
+                onHalfComplete?()
+            }, onComplete: {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + pause, execute: {
+                    self.hide(view, onComplete: {
+                        onComplete?()
+                    })
+                })
+            })
+        })
+    }
+
+    private func animate(_ view: UIView,
+                         wirh transform: FlipTransformType,
+                         duration: TimeInterval,
+                         onHalfComplete:(()->())?,
+                         onComplete: (()->())?){
+    
+        UIView.animate(withDuration: duration / 2, delay: 0.0, options: [.curveEaseIn], animations: {
+                view.layer.transform = FlipTransformType.hide.halfCycleTransform
+            }, completion: {_ in
+                onHalfComplete?()
+                
+                UIView.animate(withDuration: duration / 2, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.8, options: [], animations: {
+                    view.layer.transform = transform.endCycleTransform
+                }, completion: {_ in
+                    onComplete?()
+                })
+            })
     }
 }
 
+enum FlipTransformType {
+    case open, close, hide
+    
+    private var transform: CATransform3D {
+        var transform = CATransform3DIdentity
+        transform.m34 = 1.0 / -1000
+        return transform
+    }
+    
+    fileprivate var halfCycleTransform: CATransform3D {
+        return CATransform3DRotate(transform, .pi/2, 0.0, 1.0, 0.0)
+    }
+    
+    fileprivate var endCycleTransform: CATransform3D {
+        switch self {
+        case .open:
+            return CATransform3DRotate(transform, .pi, 0.0, 1.0, 0.0)
+        case .close:
+            return CATransform3DIdentity
+        default:
+            return CATransform3DIdentity
+        }
+    }
+}

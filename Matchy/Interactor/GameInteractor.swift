@@ -70,7 +70,7 @@ class GameInteractor {
             score += 1
             levelScore += 1
             
-            //FIXME
+            //FIXME:-
             flipsLeft += 1
             flipsUsed += 1
             cardsMatched?()
@@ -88,9 +88,9 @@ class GameInteractor {
             gameLevel.levelUp()
             start()
             levelUp?()
-        } else if flipsLeft == 0 {
+        } else if flipsLeft <= 0 {
+            flipsLeft = 0
             gameOver?()
         }
     }
-
 }

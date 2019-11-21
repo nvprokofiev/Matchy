@@ -12,12 +12,10 @@ protocol CardDelegate: class {
     func didFlip(_ card: Card)
 }
 
-class CardView: UIView, StyleHelper {
+class CardView: UIView {
     
-     var card: Card?
+    var card: Card?
     weak var delegate: CardDelegate?
-    
-    private let delay: TimeInterval = 0.3
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,7 +29,7 @@ class CardView: UIView, StyleHelper {
     
     func configure(by card: Card) {
         self.card = card
-        applyStyle(to: self, colors: card.backColor)
+        applyTileStyle(colors: card.backColor)
     }
     
     private func initialSetup() {
@@ -42,46 +40,43 @@ class CardView: UIView, StyleHelper {
         
         guard let card = card else { return }
         isUserInteractionEnabled = false
-        FlipAnimator(view: self, type: .open).animate {
-            self.setGradientBackgroundColor(to: self, colors: card.faceColor)
-            //MARK: - TO FIX
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
-                self.delegate?.didFlip(card)
-            })
-        }
+        
+        FlipAnimator().open(self, onHalfComplete: {
+            self.setGradientBackgroundColor(colors: card.faceColor)
+        }, onComplete: {
+            self.delegate?.didFlip(card)
+        })
     }
     
     func close() {
         guard let card = card else { return }
-        FlipAnimator(view: self, type: .close).animate(delay: delay) {
-            self.setGradientBackgroundColor(to: self, colors: card.backColor)
+        
+        FlipAnimator().close(self, onHalfComplete: {
+            self.setGradientBackgroundColor(colors: card.backColor)
+        }, onComplete: {
             self.isUserInteractionEnabled = true
-        }
+        })
     }
     
     func hide() {
-        FlipAnimator(view: self, type: .hide).animate(delay: delay) {
-            
-        }
+        FlipAnimator().hide(self)
     }
     
     func show() {
         guard let card = card else { return }
-        
-        FlipAnimator(view: self, type: .open).animate(delay: 1.2) {
-            self.setGradientBackgroundColor(to: self, colors: card.faceColor)
-        }.animate(delay: 2.4) {
-            self.setGradientBackgroundColor(to: self, colors: card.backColor)
-        }
+
+        FlipAnimator().show(self, onHalfComplete: {
+            self.setGradientBackgroundColor(colors: card.faceColor)
+        }, onComplete: {
+            self.setGradientBackgroundColor(colors: card.backColor)
+        })
     }
     
     func showAndHide(){
-        guard let card = card, !card.isMatched else { return }
-        
-        FlipAnimator(view: self, type: .open).animate(delay: 1.2) {
-            self.setGradientBackgroundColor(to: self, colors: card.faceColor)
-        }.animate(delay: 2.4) {
-            self.alpha = 0.0
-        }
+        guard let card = card else { return }
+
+        FlipAnimator().showHide(self, onHalfComplete: {
+            self.setGradientBackgroundColor(colors: card.faceColor)
+        })
     }
 }

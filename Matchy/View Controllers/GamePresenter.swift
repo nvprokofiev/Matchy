@@ -45,7 +45,7 @@ class GamePresenter: NSObject {
     }
     
     private func levelUp() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + FlipAnimationConstants.duration, execute: {
             self.view?.startNewLevel(with: self.cards)
         })
     }

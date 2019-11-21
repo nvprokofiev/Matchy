@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TiledButton: UIButton, StyleHelper {
+class TiledButton: UIButton {
     
     var title: String
     var action: ()->()
@@ -22,16 +22,19 @@ class TiledButton: UIButton, StyleHelper {
     }
 
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        self.title = "title"
+        self.action = {}
+        super.init(coder: coder)
+        initialSetup()
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.applyStyle(to: self)
+        applyTileStyle()
     }
 
     private func initialSetup() {
-        titleLabel?.font = .systemFont(ofSize: 30, weight: .bold)
+        titleLabel?.font = .systemFont(ofSize: 24, weight: .bold)
         titleLabel?.adjustsFontSizeToFitWidth = true
         titleLabel?.baselineAdjustment = .alignCenters
         

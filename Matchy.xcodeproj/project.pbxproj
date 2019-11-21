@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4B17FDE723767BB800073A9D /* GridProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B17FDE623767BB800073A9D /* GridProvider.swift */; };
+		4B285BF72384494500BB19A7 /* FlipAnimationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B285BF62384494500BB19A7 /* FlipAnimationConstants.swift */; };
+		4B285BF92384568900BB19A7 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B285BF82384568900BB19A7 /* GameOverView.swift */; };
 		4B2EB811234A40CA00AB8A4B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB80F234A40CA00AB8A4B /* GameViewController.swift */; };
 		4B2EB812234A40CA00AB8A4B /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B2EB810234A40CA00AB8A4B /* GameViewController.xib */; };
 		4B2EB815234A40F800AB8A4B /* GameRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB814234A40F800AB8A4B /* GameRouter.swift */; };
@@ -21,18 +23,20 @@
 		4B30E386234A67570049165C /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B30E385234A67570049165C /* GamePresenter.swift */; };
 		4B30E389234A684B0049165C /* GameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B30E388234A684B0049165C /* GameInteractor.swift */; };
 		4B436F9C2360001F003BDD18 /* TiledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B436F9B2360001F003BDD18 /* TiledButton.swift */; };
-		4B52F1A5234F8EB500122139 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1A4234F8EB500122139 /* ScoreView.swift */; };
-		4B52F1AC234FA4CF00122139 /* TitledTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1AB234FA4CF00122139 /* TitledTileView.swift */; };
-		4B52F1AF234FA99300122139 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1AE234FA99300122139 /* Tile.swift */; };
+		4B52F1A5234F8EB500122139 /* TitledTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1A4234F8EB500122139 /* TitledTileView.swift */; };
+		4B52F1AC234FA4CF00122139 /* SubtitledTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1AB234FA4CF00122139 /* SubtitledTileView.swift */; };
 		4B52F1B1234FBFDB00122139 /* FlipAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1B0234FBFDB00122139 /* FlipAnimator.swift */; };
 		4BE405A6234A3FD60058FD97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE405A5234A3FD60058FD97 /* AppDelegate.swift */; };
 		4BE405A8234A3FD60058FD97 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE405A7234A3FD60058FD97 /* SceneDelegate.swift */; };
 		4BE405AF234A3FD80058FD97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BE405AE234A3FD80058FD97 /* Assets.xcassets */; };
 		4BE405B2234A3FD80058FD97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BE405B0234A3FD80058FD97 /* LaunchScreen.storyboard */; };
+		4BEE54B523863DB8003659BF /* TextTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEE54B423863DB8003659BF /* TextTileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4B17FDE623767BB800073A9D /* GridProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridProvider.swift; sourceTree = "<group>"; };
+		4B285BF62384494500BB19A7 /* FlipAnimationConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipAnimationConstants.swift; sourceTree = "<group>"; };
+		4B285BF82384568900BB19A7 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		4B2EB80F234A40CA00AB8A4B /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4B2EB810234A40CA00AB8A4B /* GameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
 		4B2EB814234A40F800AB8A4B /* GameRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRouter.swift; sourceTree = "<group>"; };
@@ -46,9 +50,8 @@
 		4B30E385234A67570049165C /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
 		4B30E388234A684B0049165C /* GameInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInteractor.swift; sourceTree = "<group>"; };
 		4B436F9B2360001F003BDD18 /* TiledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiledButton.swift; sourceTree = "<group>"; };
-		4B52F1A4234F8EB500122139 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
-		4B52F1AB234FA4CF00122139 /* TitledTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledTileView.swift; sourceTree = "<group>"; };
-		4B52F1AE234FA99300122139 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		4B52F1A4234F8EB500122139 /* TitledTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledTileView.swift; sourceTree = "<group>"; };
+		4B52F1AB234FA4CF00122139 /* SubtitledTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitledTileView.swift; sourceTree = "<group>"; };
 		4B52F1B0234FBFDB00122139 /* FlipAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipAnimator.swift; sourceTree = "<group>"; };
 		4BE405A2234A3FD60058FD97 /* Matchy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BE405A5234A3FD60058FD97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +59,7 @@
 		4BE405AE234A3FD80058FD97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BE405B1234A3FD80058FD97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4BE405B3234A3FD80058FD97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BEE54B423863DB8003659BF /* TextTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B285BFA2384594700BB19A7 /* GameOverView */ = {
+			isa = PBXGroup;
+			children = (
+				4B285BF82384568900BB19A7 /* GameOverView.swift */,
+			);
+			path = GameOverView;
+			sourceTree = "<group>";
+		};
 		4B2EB80B234A405100AB8A4B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +113,7 @@
 		4B2EB858234A4B2200AB8A4B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4B285BFA2384594700BB19A7 /* GameOverView */,
 				4B2EB85B234A4B4000AB8A4B /* Custom Views */,
 			);
 			path = Views;
@@ -109,11 +122,11 @@
 		4B2EB85B234A4B4000AB8A4B /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				4B52F1AD234FA98700122139 /* Tile */,
-				4B52F1AA234FA49F00122139 /* Titled Tile */,
-				4B52F1A3234F8E9D00122139 /* Score */,
+				4B52F1AA234FA49F00122139 /* SubtitledTileView */,
+				4B52F1A3234F8E9D00122139 /* TitledTileView */,
 				4B2EB85C234A4B4C00AB8A4B /* Card */,
 				4B436F9B2360001F003BDD18 /* TiledButton.swift */,
+				4BEE54B423863DB8003659BF /* TextTileView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -134,6 +147,7 @@
 				4B2EB86B234A507400AB8A4B /* CardIdentifierFactory.swift */,
 				4B52F1B0234FBFDB00122139 /* FlipAnimator.swift */,
 				4B17FDE623767BB800073A9D /* GridProvider.swift */,
+				4B285BF62384494500BB19A7 /* FlipAnimationConstants.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -170,28 +184,20 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
-		4B52F1A3234F8E9D00122139 /* Score */ = {
+		4B52F1A3234F8E9D00122139 /* TitledTileView */ = {
 			isa = PBXGroup;
 			children = (
-				4B52F1A4234F8EB500122139 /* ScoreView.swift */,
+				4B52F1A4234F8EB500122139 /* TitledTileView.swift */,
 			);
-			path = Score;
+			path = TitledTileView;
 			sourceTree = "<group>";
 		};
-		4B52F1AA234FA49F00122139 /* Titled Tile */ = {
+		4B52F1AA234FA49F00122139 /* SubtitledTileView */ = {
 			isa = PBXGroup;
 			children = (
-				4B52F1AB234FA4CF00122139 /* TitledTileView.swift */,
+				4B52F1AB234FA4CF00122139 /* SubtitledTileView.swift */,
 			);
-			path = "Titled Tile";
-			sourceTree = "<group>";
-		};
-		4B52F1AD234FA98700122139 /* Tile */ = {
-			isa = PBXGroup;
-			children = (
-				4B52F1AE234FA99300122139 /* Tile.swift */,
-			);
-			path = Tile;
+			path = SubtitledTileView;
 			sourceTree = "<group>";
 		};
 		4BE40599234A3FD60058FD97 = {
@@ -300,23 +306,25 @@
 			files = (
 				4B436F9C2360001F003BDD18 /* TiledButton.swift in Sources */,
 				4B2EB815234A40F800AB8A4B /* GameRouter.swift in Sources */,
-				4B52F1AF234FA99300122139 /* Tile.swift in Sources */,
-				4B52F1A5234F8EB500122139 /* ScoreView.swift in Sources */,
+				4B52F1A5234F8EB500122139 /* TitledTileView.swift in Sources */,
 				4B2EB86C234A507400AB8A4B /* CardIdentifierFactory.swift in Sources */,
 				4B2EB867234A4F3400AB8A4B /* StyleHelper.swift in Sources */,
 				4B2EB865234A4E8C00AB8A4B /* Nibloadable.swift in Sources */,
+				4B285BF92384568900BB19A7 /* GameOverView.swift in Sources */,
 				4B30E386234A67570049165C /* GamePresenter.swift in Sources */,
-				4B52F1AC234FA4CF00122139 /* TitledTileView.swift in Sources */,
+				4B52F1AC234FA4CF00122139 /* SubtitledTileView.swift in Sources */,
 				4B30E389234A684B0049165C /* GameInteractor.swift in Sources */,
 				4BE405A6234A3FD60058FD97 /* AppDelegate.swift in Sources */,
 				4B2EB811234A40CA00AB8A4B /* GameViewController.swift in Sources */,
 				4BE405A8234A3FD60058FD97 /* SceneDelegate.swift in Sources */,
+				4BEE54B523863DB8003659BF /* TextTileView.swift in Sources */,
 				4B2EB85A234A4B3B00AB8A4B /* CardView.swift in Sources */,
 				4B17FDE723767BB800073A9D /* GridProvider.swift in Sources */,
 				4B2EB86A234A4FB000AB8A4B /* Card.swift in Sources */,
 				4B2EB862234A4E2200AB8A4B /* Gradients.swift in Sources */,
 				4B2EB860234A4DEA00AB8A4B /* GameLevel.swift in Sources */,
 				4B52F1B1234FBFDB00122139 /* FlipAnimator.swift in Sources */,
+				4B285BF72384494500BB19A7 /* FlipAnimationConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,7 +28,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="cSb-7k-thf">
                             <rect key="frame" x="16" y="8" width="382" height="144"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C4i-z7-gxb" customClass="ScoreView" customModule="Matchy" customModuleProvider="target">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C4i-z7-gxb" customClass="TextTileView" customModule="Matchy" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="144" height="144"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="C4i-z7-gxb" secondAttribute="height" id="1XX-kn-tHL"/>
@@ -40,16 +40,27 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rD1-k9-wOV">
                                             <rect key="frame" x="0.0" y="0.0" width="222" height="72"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhj-g7-C22" customClass="TitledTileView" customModule="Matchy" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhj-g7-C22" customClass="TextTileView" customModule="Matchy" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="103" height="72"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j9h-dL-qWl" customClass="TitledTileView" customModule="Matchy" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j9h-dL-qWl" customClass="TextTileView" customModule="Matchy" customModuleProvider="target">
                                                     <rect key="frame" x="119" y="0.0" width="103" height="72"/>
                                                 </view>
                                             </subviews>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qG4-e6-FMd">
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qG4-e6-FMd">
                                             <rect key="frame" x="0.0" y="88" width="222" height="56"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghg-6g-gSg" customClass="TiledButton" customModule="Matchy" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="68.5" height="56"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UY3-i7-Ulc" customClass="TiledButton" customModule="Matchy" customModuleProvider="target">
+                                                    <rect key="frame" x="76.5" y="0.0" width="69" height="56"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ktb-cb-PBB" customClass="TiledButton" customModule="Matchy" customModuleProvider="target">
+                                                    <rect key="frame" x="153.5" y="0.0" width="68.5" height="56"/>
+                                                </button>
+                                            </subviews>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -90,7 +101,7 @@
                 <constraint firstItem="Tww-Yz-PTO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qCv-kj-izq"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="137.68115942028987" y="124.55357142857142"/>
+            <point key="canvasLocation" x="222" y="49"/>
         </view>
     </objects>
 </document>
