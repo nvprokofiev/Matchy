@@ -15,7 +15,7 @@ class GamePresenter: NSObject {
     private var cards: [Card] {
         return gameInteractor.getCards()
     }
-    
+
     var level: Int {
         return gameInteractor.gameLevel.level
     }
@@ -36,12 +36,7 @@ class GamePresenter: NSObject {
     }
     
     private func gameOver() {
-        view?.gameOver()
-    }
-    
-    func playAgain() {
-        gameInteractor.playAgain()
-        view?.startNewLevel(with: cards)
+        view?.gameOver(with: GameResult(score: gameInteractor.score, flipsUsed: gameInteractor.flipsUsed))
     }
     
     private func levelUp() {
@@ -66,6 +61,15 @@ extension GamePresenter: CardDelegate {
     func didFlip(_ card: Card) {
         view?.didFlip(card)
         gameInteractor.flip(card)
+        updateFlipsLabels()
+    }
+}
+
+extension GamePresenter: GameOverDelegate {
+    
+    func playAgain() {
+        gameInteractor.playAgain()
+        view?.startNewLevel(with: cards)
         updateFlipsLabels()
     }
 }

@@ -11,11 +11,10 @@ import UIKit
 class TiledButton: UIButton {
     
     var title: String
-    var action: ()->()
+    var action: (()->())?
     
-    init(title: String, action: @escaping ()->()){
+    init(title: String){
         self.title = title
-        self.action = action
     
         super.init(frame: .zero)
         initialSetup()
@@ -53,7 +52,7 @@ class TiledButton: UIButton {
         UIView.animate(withDuration: 0.1, animations: {
             self.transform = .identity
         }, completion: {_ in
-            self.action()
+            self.action?()
         })
     }
 }

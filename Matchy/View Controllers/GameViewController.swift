@@ -18,12 +18,6 @@ class GameViewController: UIViewController {
     private let presenter = GamePresenter()
     private var cards: [Int: CardView] = [:]
     private var flippedCards: [CardView] = []
-
-    private lazy var gameOverView: GameOverView = {
-        let gameOverView = GameOverView(bestResult: 231, playAgainAction: playAgain)
-        gameOverView.translatesAutoresizingMaskIntoConstraints = false
-        return gameOverView
-    }()
     
     private lazy var levelLabel: UILabel = {
         let levelLabel = UILabel()
@@ -62,16 +56,6 @@ class GameViewController: UIViewController {
     }
     
     //MARK: - Add Views
-    private func addGameOverView(){
-    
-        view.addSubview(gameOverView)
-        NSLayoutConstraint.activate([
-            gameOverView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant:  20),
-            gameOverView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            gameOverView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            gameOverView.heightAnchor.constraint(equalToConstant: 200)
-        ])
-    }
     
     private func addLevelLabel() {
         view.addSubview(levelLabel)
@@ -118,12 +102,15 @@ class GameViewController: UIViewController {
         flippedCards.removeAll()
     }
     
-    func gameOver() {
+    func gameOver(with gameResult: GameResult) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + FlipAnimationConstants.duration, execute: {
             self.cards.values.forEach{ $0.showAndHide() }
             DispatchQueue.main.asyncAfter(deadline: .now() + FlipAnimationConstants.hideDuration, execute: {
-                self.addGameOverView()
+                let vc = GameOverViewController(gameResult: gameResult)
+                vc.modalPresentationStyle = .fullScreen
+                vc.delegate = self.presenter
+                self.present(vc, animated: true)
             })
         })
     }
@@ -139,12 +126,6 @@ class GameViewController: UIViewController {
             self.addCardViews(for: cards)
         })
     }
-    
-    func playAgain() {
-        gameOverView.removeFromSuperview()
-        presenter.playAgain()
-    }
-
     //MARK: - Update Views
 
     func updateFlipsLeftLabel(with value: Int){

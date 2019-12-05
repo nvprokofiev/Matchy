@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4B17FDE723767BB800073A9D /* GridProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B17FDE623767BB800073A9D /* GridProvider.swift */; };
 		4B285BF72384494500BB19A7 /* FlipAnimationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B285BF62384494500BB19A7 /* FlipAnimationConstants.swift */; };
-		4B285BF92384568900BB19A7 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B285BF82384568900BB19A7 /* GameOverView.swift */; };
 		4B2EB811234A40CA00AB8A4B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB80F234A40CA00AB8A4B /* GameViewController.swift */; };
 		4B2EB812234A40CA00AB8A4B /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B2EB810234A40CA00AB8A4B /* GameViewController.xib */; };
 		4B2EB815234A40F800AB8A4B /* GameRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2EB814234A40F800AB8A4B /* GameRouter.swift */; };
@@ -24,6 +23,7 @@
 		4B30E389234A684B0049165C /* GameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B30E388234A684B0049165C /* GameInteractor.swift */; };
 		4B436F9C2360001F003BDD18 /* TiledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B436F9B2360001F003BDD18 /* TiledButton.swift */; };
 		4B52F1B1234FBFDB00122139 /* FlipAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52F1B0234FBFDB00122139 /* FlipAnimator.swift */; };
+		4BC375B52399720F00B6A8E4 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC375B32399720F00B6A8E4 /* GameOverViewController.swift */; };
 		4BE405A6234A3FD60058FD97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE405A5234A3FD60058FD97 /* AppDelegate.swift */; };
 		4BE405A8234A3FD60058FD97 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE405A7234A3FD60058FD97 /* SceneDelegate.swift */; };
 		4BE405AF234A3FD80058FD97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BE405AE234A3FD80058FD97 /* Assets.xcassets */; };
@@ -34,7 +34,6 @@
 /* Begin PBXFileReference section */
 		4B17FDE623767BB800073A9D /* GridProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridProvider.swift; sourceTree = "<group>"; };
 		4B285BF62384494500BB19A7 /* FlipAnimationConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipAnimationConstants.swift; sourceTree = "<group>"; };
-		4B285BF82384568900BB19A7 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		4B2EB80F234A40CA00AB8A4B /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4B2EB810234A40CA00AB8A4B /* GameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
 		4B2EB814234A40F800AB8A4B /* GameRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRouter.swift; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		4B30E388234A684B0049165C /* GameInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInteractor.swift; sourceTree = "<group>"; };
 		4B436F9B2360001F003BDD18 /* TiledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiledButton.swift; sourceTree = "<group>"; };
 		4B52F1B0234FBFDB00122139 /* FlipAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipAnimator.swift; sourceTree = "<group>"; };
+		4BC375B32399720F00B6A8E4 /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		4BE405A2234A3FD60058FD97 /* Matchy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BE405A5234A3FD60058FD97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BE405A7234A3FD60058FD97 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,17 +69,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4B285BFA2384594700BB19A7 /* GameOverView */ = {
-			isa = PBXGroup;
-			children = (
-				4B285BF82384568900BB19A7 /* GameOverView.swift */,
-			);
-			path = GameOverView;
-			sourceTree = "<group>";
-		};
 		4B2EB80B234A405100AB8A4B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4BC375B2239971EE00B6A8E4 /* GameOverViewController */,
 				4B2EB80F234A40CA00AB8A4B /* GameViewController.swift */,
 				4B30E385234A67570049165C /* GamePresenter.swift */,
 				4B2EB810234A40CA00AB8A4B /* GameViewController.xib */,
@@ -109,7 +102,6 @@
 		4B2EB858234A4B2200AB8A4B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4B285BFA2384594700BB19A7 /* GameOverView */,
 				4B2EB85B234A4B4000AB8A4B /* Custom Views */,
 			);
 			path = Views;
@@ -176,6 +168,14 @@
 				4B30E388234A684B0049165C /* GameInteractor.swift */,
 			);
 			path = Interactor;
+			sourceTree = "<group>";
+		};
+		4BC375B2239971EE00B6A8E4 /* GameOverViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4BC375B32399720F00B6A8E4 /* GameOverViewController.swift */,
+			);
+			path = GameOverViewController;
 			sourceTree = "<group>";
 		};
 		4BE40599234A3FD60058FD97 = {
@@ -286,8 +286,8 @@
 				4B2EB815234A40F800AB8A4B /* GameRouter.swift in Sources */,
 				4B2EB86C234A507400AB8A4B /* CardIdentifierFactory.swift in Sources */,
 				4B2EB867234A4F3400AB8A4B /* StyleHelper.swift in Sources */,
+				4BC375B52399720F00B6A8E4 /* GameOverViewController.swift in Sources */,
 				4B2EB865234A4E8C00AB8A4B /* Nibloadable.swift in Sources */,
-				4B285BF92384568900BB19A7 /* GameOverView.swift in Sources */,
 				4B30E386234A67570049165C /* GamePresenter.swift in Sources */,
 				4B30E389234A684B0049165C /* GameInteractor.swift in Sources */,
 				4BE405A6234A3FD60058FD97 /* AppDelegate.swift in Sources */,

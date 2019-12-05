@@ -34,6 +34,7 @@ class GameInteractor {
 
     func start() {
         levelScore = 0
+        flipsUsed = 0
         flipsLeft += gameLevel.value
         cards = getCardSet()
     }
