@@ -76,7 +76,7 @@ class TextTileView: UIView {
         super.layoutSubviews()
         self.applyTileStyle()
     }
-
+    
     private func addStackView() {
         
         stackView.addArrangedSubview(subtitleLabel)

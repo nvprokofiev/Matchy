@@ -15,8 +15,6 @@ class GameOverView: UIView {
 
     private var bestResult: Int
     private var playAgainAction: ()->()
-    
-    
 
     private lazy var gameOverView: UIView = {
         let gameView = TextTileView()

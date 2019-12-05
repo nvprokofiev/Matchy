@@ -12,10 +12,15 @@ protocol CardDelegate: class {
     func didFlip(_ card: Card)
 }
 
+enum CardState {
+    case open, close, hidden
+}
+
 class CardView: UIView {
-    
+
     var card: Card?
     weak var delegate: CardDelegate?
+    private var state: CardState = .close
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,9 +40,10 @@ class CardView: UIView {
     private func initialSetup() {
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(open)))
     }
-    
+
     @objc private func open() {
-        
+        state = .open
+
         guard let card = card else { return }
         isUserInteractionEnabled = false
         
@@ -49,8 +55,9 @@ class CardView: UIView {
     }
     
     func close() {
+        state = .close
+
         guard let card = card else { return }
-        
         FlipAnimator().close(self, onHalfComplete: {
             self.setGradientBackgroundColor(colors: card.backColor)
         }, onComplete: {
@@ -59,6 +66,7 @@ class CardView: UIView {
     }
     
     func hide() {
+        state = .hidden
         FlipAnimator().hide(self)
     }
     
@@ -74,9 +82,30 @@ class CardView: UIView {
     
     func showAndHide(){
         guard let card = card else { return }
-
-        FlipAnimator().showHide(self, onHalfComplete: {
-            self.setGradientBackgroundColor(colors: card.faceColor)
+        
+        
+        switch state {
+        case .close:
+            FlipAnimator().open(self, onHalfComplete: {
+                self.setGradientBackgroundColor(colors: card.faceColor)
+            })
+        case .hidden:
+            DispatchQueue.main.asyncAfter(deadline: .now() + FlipAnimationConstants.duration / 2, execute: {
+                FlipAnimator().open(self, onHalfComplete: {
+                    self.setGradientBackgroundColor(colors: card.faceColor)
+                })
+            })
+        default:
+            break
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + FlipAnimationConstants.duration + FlipAnimationConstants.pause, execute: {
+            FlipAnimator().hide(self)
         })
+        
+
+//        FlipAnimator().showHide(self, onHalfComplete: {
+//            self.setGradientBackgroundColor(colors: card.faceColor)
+//        })
     }
 }

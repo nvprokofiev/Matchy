@@ -16,7 +16,7 @@ class GameInteractor {
     private var levelScore = 0
     var gameLevel = GameLevel()
     private var presenter: GamePresenter
-    
+        
     var flipsUsed = 0
     var flipsLeft = 0
     
@@ -47,7 +47,6 @@ class GameInteractor {
         CardIdentifierFactory.reset()
 
         cards = (1 ... gameLevel.value).map { _ in Card() }
-        
         cards.forEach{ cards.append($0.copy()) }
 //        cards.shuffle()
         
@@ -59,7 +58,7 @@ class GameInteractor {
     }
     
     func flip(_ card: Card){
-  
+          
         guard let flippedCard = flippedCard else {
             self.flippedCard = card
             return

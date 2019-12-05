@@ -97,11 +97,10 @@ class GameViewController: UIViewController {
             cardView.delegate = presenter
             cardView.configure(by: card)
             self.cards[card.id] = cardView
-
             view.addSubview(cardView)
         }
     }
-    
+
     //MARK: - Game Callbacks
     
     func didFlip(_ card: Card) {
@@ -120,9 +119,12 @@ class GameViewController: UIViewController {
     }
     
     func gameOver() {
-        cards.values.forEach { $0.showAndHide() }
-        DispatchQueue.main.asyncAfter(deadline: .now() + FlipAnimationConstants.hideDuration, execute: {
-            self.addGameOverView()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + FlipAnimationConstants.duration, execute: {
+            self.cards.values.forEach{ $0.showAndHide() }
+            DispatchQueue.main.asyncAfter(deadline: .now() + FlipAnimationConstants.hideDuration, execute: {
+                self.addGameOverView()
+            })
         })
     }
     
